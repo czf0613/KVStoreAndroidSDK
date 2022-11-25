@@ -24,14 +24,16 @@ class MainActivity : AppCompatActivity() {
         )
 
         lifecycleScope.launch {
-            KVStoreClient.setInt("happy_test", 114514)
+//            KVStoreClient.setInt("happy_test", 114514)
+//            delay(1000)
+//            val happy = KVStoreClient.getInt("happy_test")
+//            Log.i("result", "saved int is: $happy")
+//            KVStoreClient.deleteKey("happy_test")
 
+            KVStoreClient.setIntArray("int_arr", listOf(1, 2, 3, 4, 5))
             delay(1000)
-
-            val happy = KVStoreClient.getInt("happy_test")
-            Log.i("result", "saved int is: $happy")
-
-            KVStoreClient.deleteKey("happy_test")
+            val arr = KVStoreClient.getIntArray("int_arr") ?: emptyList()
+            Log.i("result", "saved int_arr is: ${arr.joinToString(", ")}")
         }
     }
 }

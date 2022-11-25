@@ -16,7 +16,6 @@ data class DataModelDto(
     val floatValue: Float = 0.0f,
     val doubleValue: Double = 0.0,
     val stringValue: String = "",
-    val byteStringValue: String = "",
     val int32Values: List<Int> = emptyList(),
     val int64Values: List<Long> = emptyList(),
     val booleanValues: List<Boolean> = emptyList(),
@@ -25,9 +24,16 @@ data class DataModelDto(
     val stringValues: List<String> = emptyList(),
 ) {
     var valueTypeIndicator: Int = 0
+    var byteStringValue: String = ""
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun extractByteString(): ByteArray = Base64.getDecoder().decode(byteStringValue)
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun encodeByteString(bytes: ByteArray) {
+        byteStringValue = Base64.getEncoder().encodeToString(bytes)
+        valueTypeIndicator = 8
+    }
 
     fun getType(): DataType {
         return when (valueTypeIndicator) {
