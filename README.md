@@ -1,1 +1,2 @@
 # KVStoreAndroidSDK
+特别注意，由于Java原生并不支持unsigned类型，因此本SDK只能部分利用到KV储存的能力，如果非常需要unsigned类型，请考虑使用高一级的数据类型进行替代。例如使用long代替uint32，使用string替代uint64等等。具体请参考贵方的业务需求
